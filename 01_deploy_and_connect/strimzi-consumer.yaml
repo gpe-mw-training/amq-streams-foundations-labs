@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: kafka-consumer
+  name: kafka-consumer
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kafka-consumer
+    spec:
+      containers:
+      - name: kafka-consumer
+        image: strimzi/hello-world-consumer:latest
+        resources:
+          limits:
+            cpu: "2"
+            memory: 2Gi
+          requests:
+            cpu: "1"
+            memory: 1Gi
+        env:
+          - name: BOOTSTRAP_SERVERS
+            value: my-cluster-kafka-bootstrap:9092
+          - name: TOPIC
+            value: my-topic
+          - name: GROUP_ID
+            value: my-hello-world-consumer
+          - name: LOG_LEVEL
+            value: "INFO"
+          - name: MESSAGE_COUNT
+            value: "1000"
