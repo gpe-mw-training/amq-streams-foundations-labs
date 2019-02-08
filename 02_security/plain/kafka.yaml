@@ -1,0 +1,43 @@
+apiVersion: kafka.strimzi.io/v1alpha1
+kind: Kafka
+metadata:
+  name: my-cluster
+  labels:
+    app: my-cluster
+spec:
+  kafka:
+    replicas: 3
+    listeners:
+      plain: {}
+    configuration:
+      auto.create.topics.enable: false
+    storage:
+      type: ephemeral
+  resources:
+    requests:
+      memory: 2Gi
+    limits:
+      memory: 6Gi
+    readinessProbe:
+      initialDelaySeconds: 60
+      timeoutSeconds: 5
+    livenessProbe:
+      initialDelaySeconds: 60
+      timeoutSeconds: 5
+  zookeeper:
+    replicas: 3
+    storage:
+      type: ephemeral
+  entityOperator:
+    topicOperator:
+      resources:
+        requests:
+          memory: 2Gi
+        limits:
+          memory: 6Gi
+    userOperator: {}
+      resources:
+        requests:
+          memory: 2Gi
+        limits:
+          memory: 6Gi
