@@ -13,11 +13,11 @@ spec:
       auto.create.topics.enable: false
     storage:
       type: ephemeral
-  resources:
-    requests:
-      memory: 2Gi
-    limits:
-      memory: 6Gi
+    resources:
+      requests:
+        memory: 512Mi
+      limits:
+        memory: 2Gi
     readinessProbe:
       initialDelaySeconds: 60
       timeoutSeconds: 5
@@ -28,16 +28,21 @@ spec:
     replicas: 3
     storage:
       type: ephemeral
+    resources:
+      requests:
+        memory: 512Mi
+      limits:
+        memory: 2Gi
   entityOperator:
     topicOperator:
       resources:
         requests:
-          memory: 2Gi
+          memory: 512Mi
         limits:
-          memory: 6Gi
-    userOperator: {}
+          memory: 2Gi
+    userOperator:
       resources:
         requests:
-          memory: 2Gi
+          memory: 512Mi
         limits:
-          memory: 6Gi
+          memory: 2Gi
