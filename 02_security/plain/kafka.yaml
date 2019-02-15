@@ -16,13 +16,15 @@ spec:
     resources:
       requests:
         memory: 512Mi
+        cpu: 500m
       limits:
         memory: 2Gi
+        cpu: 2000m
     readinessProbe:
-      initialDelaySeconds: 60
+      initialDelaySeconds: 15
       timeoutSeconds: 5
     livenessProbe:
-      initialDelaySeconds: 60
+      initialDelaySeconds: 15
       timeoutSeconds: 5
   zookeeper:
     replicas: 3
@@ -31,18 +33,24 @@ spec:
     resources:
       requests:
         memory: 512Mi
+        cpu: 500m
       limits:
         memory: 2Gi
+        cpu: 1000m
   entityOperator:
     topicOperator:
       resources:
         requests:
           memory: 512Mi
+          cpu: 200m
         limits:
           memory: 2Gi
+          cpu: 500m
     userOperator:
       resources:
         requests:
           memory: 512Mi
+          cpu: 200m
         limits:
           memory: 2Gi
+          cpu: 500m
