@@ -5,27 +5,19 @@ metadata:
 spec:
   replicas: 1
   resources:
-      requests:
-        memory: 512Mi
-      limits:
-        memory: 2Gi
+    requests:
+      memory: 512Mi
+      cpu: 200m
+    limits:
+      memory: 2Gi
+      cpu: 500m
   readinessProbe:
-    initialDelaySeconds: 60
+    initialDelaySeconds: 120
     timeoutSeconds: 5
   livenessProbe:
-    initialDelaySeconds: 60
+    initialDelaySeconds: 120
     timeoutSeconds: 5
-  bootstrapServers: my-cluster-kafka-bootstrap:9093
-  tls:
-    trustedCertificates:
-      - secretName: my-cluster-cluster-ca-cert
-        certificate: ca.crt
-  authentication:
-    type: tls
-    certificateAndKey:
-      secretName: my-connect
-      key: user.key
-      certificate: user.crt
+  bootstrapServers: my-cluster-kafka-bootstrap:9092
   config:
     key.converter: org.apache.kafka.connect.storage.StringConverter
     value.converter: org.apache.kafka.connect.storage.StringConverter
